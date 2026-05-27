@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-// В продакшене берём URL из переменной окружения, локально — localhost
-const api = axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api' });
+// На Vercel фронтенд и бэкенд на одном домене — используем /api
+// Локально бэкенд на отдельном порту 3000
+const baseURL = import.meta.env.PROD ? '/api' : 'http://localhost:3000/api';
+const api = axios.create({ baseURL });
 
 export const getGames = () => api.get('/games');
 export const getCategories = () => api.get('/categories');

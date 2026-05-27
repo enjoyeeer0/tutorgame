@@ -8,8 +8,10 @@ const DB_PATH = path.join(__dirname, 'gameguides.db');
 // Переменная для хранения объекта базы данных
 let db;
 
-// Сохраняет текущее состояние базы в файл
+// Сохраняет базу в файл — только локально
+// На Vercel файловая система временная, сохранять бессмысленно
 function save() {
+  if (process.env.VERCEL) return;
   fs.writeFileSync(DB_PATH, Buffer.from(db.export()));
 }
 
@@ -718,8 +720,9 @@ Shield Bash: ударь врага щитом чтобы оглушить.
 async function init() {
   const SQL = await initSqlJs();
 
-  // Загружаем существующую БД или создаём новую
-  if (fs.existsSync(DB_PATH)) {
+  // На Vercel всегда создаём новую БД в памяти (файлы там временные)
+  // Локально загружаем существующий файл если он есть
+  if (!process.env.VERCEL && fs.existsSync(DB_PATH)) {
     db = new SQL.Database(fs.readFileSync(DB_PATH));
   } else {
     db = new SQL.Database();
