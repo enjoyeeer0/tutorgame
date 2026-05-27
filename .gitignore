@@ -1,0 +1,10 @@
+# Зависимости — качаются через npm install
+node_modules/
+
+# База данных SQLite — не заливаем, создаётся автоматически
+backend/gameguides.db
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+*.log

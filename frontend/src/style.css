@@ -1,0 +1,634 @@
+/* ===== СБРОС СТИЛЕЙ ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== ОСНОВА СТРАНИЦЫ ===== */
+/* Светлый фон для всего сайта кроме hero */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f2f2f2;
+  color: #111111;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Обёртка всей страницы — колонка на весь экран */
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Контент между шапкой и подвалом — занимает всё свободное место */
+.layout-content {
+  flex: 1;
+}
+
+/* Центрирующий контейнер */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== НАВБАР ===== */
+/* Белый фон с лёгкой тенью — выглядит чисто */
+.navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+}
+
+.navbar .inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Логотип: первая часть чёрная, вторая — акцентная */
+.navbar .logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111111;
+  letter-spacing: 0.5px;
+}
+.navbar .logo span {
+  color: #111111;
+  background-color: #111111;
+  color: #ffffff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 1px;
+}
+
+/* Ссылки в меню */
+.navbar nav a {
+  color: #555555;
+  margin-left: 24px;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+  font-weight: 500;
+}
+.navbar nav a:hover,
+.navbar nav a.router-link-active {
+  color: #111111;
+}
+
+/* ===== HERO — СЕКЦИЯ С GLASSMORPHISM ===== */
+/* Тёмный фон + декоративные круги = основа для стекла */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background-color: #0d0d0d;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+/* Декоративные размытые круги за стеклом */
+/* Они нужны чтобы эффект blur был заметен */
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+.hero-blob--topleft {
+  width: 450px;
+  height: 450px;
+  background: rgba(255, 255, 255, 0.12);
+  top: -150px;
+  left: -100px;
+}
+.hero-blob--bottomright {
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.07);
+  bottom: -120px;
+  right: -80px;
+}
+.hero-blob--center {
+  width: 300px;
+  height: 300px;
+  background: rgba(200, 200, 200, 0.08);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Стеклянный блок поверх тёмного фона */
+/* backdrop-filter: blur() — главный инструмент glassmorphism */
+.hero-glass {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 24px;
+  padding: 56px 48px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-glass h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.hero-glass p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  margin-bottom: 28px;
+}
+
+/* ===== СТРОКА ПОИСКА ===== */
+.search-bar {
+  display: flex;
+  gap: 10px;
+}
+.search-bar input {
+  flex: 1;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+.search-bar input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+.search-bar input:focus {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== КНОПКИ ===== */
+/* Основная кнопка — чёрная */
+.btn {
+  padding: 12px 22px;
+  background-color: #ffffff;
+  color: #111111;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+  font-family: inherit;
+}
+.btn:hover {
+  background-color: #e5e5e5;
+}
+
+/* Кнопка в обычном контенте (не на тёмном фоне) */
+.btn-dark {
+  background-color: #111111;
+  color: #ffffff;
+}
+.btn-dark:hover {
+  background-color: #333333;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #111111;
+  color: #111111;
+}
+.btn-outline:hover {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+.btn-sm {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+}
+
+.btn-danger {
+  background-color: #cc3333;
+  color: #ffffff;
+}
+.btn-danger:hover {
+  background-color: #aa2222;
+}
+
+/* ===== ФИЛЬТРЫ ===== */
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 28px 0 16px;
+  align-items: center;
+}
+.filters span {
+  color: #888888;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.filter-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #dddddd;
+  background-color: #ffffff;
+  color: #555555;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.filter-btn:hover {
+  border-color: #111111;
+  color: #111111;
+}
+.filter-btn.active {
+  background-color: #111111;
+  border-color: #111111;
+  color: #ffffff;
+}
+
+/* ===== СЕТКА КАРТОЧЕК ===== */
+.guides-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+  padding-bottom: 60px;
+}
+
+/* Карточка гайда — белая с тенью */
+.guide-card {
+  background-color: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.guide-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Метки игры и категории */
+.card-meta {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.tag {
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+.tag.game {
+  background-color: #111111;
+  color: #ffffff;
+}
+.tag.category {
+  background-color: #f0f0f0;
+  color: #444444;
+  border: 1px solid #dddddd;
+}
+
+/* Заголовок и превью текста */
+.guide-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111111;
+  margin-bottom: 8px;
+}
+.guide-card p {
+  font-size: 0.875rem;
+  color: #777777;
+  line-height: 1.6;
+  /* Обрезаем текст до 3 строк */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Футер карточки — автор */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  font-size: 0.8rem;
+  color: #999999;
+  border-top: 1px solid #f5f5f5;
+  padding-top: 10px;
+}
+
+/* ===== СТРАНИЦА ИГРЫ ===== */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.game-card {
+  background-color: #ffffff;
+  border: 2px solid #eeeeee;
+  border-radius: 12px;
+  padding: 0;              /* padding убран — он теперь внутри .game-card-body */
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+.game-card:hover,
+.game-card.active {
+  border-color: #111111;
+}
+/* Обёртка для обложки — занимает верхнюю часть карточки */
+.game-cover-wrapper {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Картинка обложки — растягивается и обрезается по центру */
+.game-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Эмодзи поверх фона когда картинка не загрузилась */
+.game-cover-emoji {
+  font-size: 3rem;
+  line-height: 1;
+  position: absolute;
+}
+
+/* Нижняя часть карточки с текстом */
+.game-card-body {
+  padding: 14px 16px 16px;
+}
+
+.guide-count {
+  font-size: 0.8rem;
+  color: #999999;
+  margin-top: 6px;
+}
+
+.game-card h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #111111;
+}
+.game-card .genre {
+  font-size: 0.75rem;
+  color: #888888;
+  margin-top: 4px;
+}
+
+/* ===== СТРАНИЦА ГАЙДА ===== */
+.guide-detail {
+  max-width: 760px;
+  margin: 40px auto;
+  padding: 0 20px 60px;
+}
+
+.back-link {
+  color: #555555;
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.back-link:hover {
+  color: #111111;
+}
+
+.guide-detail h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111111;
+  margin: 16px 0 8px;
+}
+
+.guide-detail .author {
+  color: #999999;
+  font-size: 0.85rem;
+  margin-bottom: 24px;
+}
+
+/* Основное содержание гайда */
+.guide-body {
+  background-color: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 12px;
+  padding: 28px;
+  line-height: 1.8;
+  font-size: 0.95rem;
+  color: #333333;
+  white-space: pre-wrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Кнопка удаления гайда */
+.delete-section {
+  margin: 20px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ===== КОММЕНТАРИИ ===== */
+.comments {
+  margin-top: 40px;
+}
+.comments h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111111;
+  margin-bottom: 20px;
+}
+.comment-item {
+  background-color: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.comment-author {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #111111;
+}
+.comment-date {
+  font-size: 0.75rem;
+  color: #bbbbbb;
+}
+.comment-text {
+  font-size: 0.875rem;
+  color: #555555;
+  line-height: 1.6;
+}
+
+/* Форма добавления комментария */
+.comment-form {
+  margin-top: 24px;
+}
+.comment-form input,
+.comment-form textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  color: #111111;
+  font-size: 0.9rem;
+  outline: none;
+  font-family: inherit;
+  margin-bottom: 10px;
+  transition: border-color 0.2s;
+}
+.comment-form input:focus,
+.comment-form textarea:focus {
+  border-color: #111111;
+}
+.comment-form textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* ===== ФОРМА ДОБАВЛЕНИЯ ГАЙДА ===== */
+.form-page {
+  max-width: 660px;
+  margin: 40px auto;
+  padding: 0 20px 60px;
+}
+.form-page h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 28px;
+}
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  color: #777777;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  color: #111111;
+  font-size: 0.95rem;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #111111;
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 160px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ===== ВСПОМОГАТЕЛЬНЫЕ ===== */
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #111111;
+  margin-bottom: 20px;
+}
+
+/* Состояние когда данных нет */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #bbbbbb;
+}
+.empty .icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+/* Уведомление об успехе */
+.success-msg {
+  background-color: #f0fff4;
+  border: 1px solid #b2dfdb;
+  color: #2e7d5e;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+/* Уведомление об ошибке */
+.error-msg {
+  background-color: #fff0f0;
+  border: 1px solid #ffcccc;
+  color: #cc3333;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+/* ===== ФУТЕР ===== */
+.footer {
+  background-color: #ffffff;
+  border-top: 1px solid #eeeeee;
+  padding: 28px 20px;
+  text-align: center;
+  color: #bbbbbb;
+  font-size: 0.85rem;
+}

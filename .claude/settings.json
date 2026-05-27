@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Set-Location \"c:\\\\Users\\\\pitya\\\\OneDrive\\\\Desktop\\\\study\\\\web-site\\\\backend\"; $proc = Start-Process -FilePath \"node\" -ArgumentList \"server.js\" -PassThru -RedirectStandardOutput \"out.txt\" -RedirectStandardError \"err.txt\"; Start-Sleep -Seconds 4; Get-Content out.txt; Get-Content err.txt; $proc.Kill\\(\\))",
+      "PowerShell(Set-Location \"c:\\\\Users\\\\pitya\\\\OneDrive\\\\Desktop\\\\study\\\\web-site\\\\backend\"; $proc = Start-Process -FilePath \"node\" -ArgumentList \"server.js\" -PassThru; Start-Sleep -Seconds 3; try { $r = Invoke-RestMethod -Uri \"http://localhost:3000/api/games\" -TimeoutSec 5; $r | ConvertTo-Json } finally { $proc.Kill\\(\\) })",
+      "WebFetch(domain:ru.minecraft.wiki)",
+      "WebFetch(domain:escapefromtarkov.fandom.com)",
+      "WebFetch(domain:arcraiders.help)",
+      "WebFetch(domain:steamcommunity.com)",
+      "WebFetch(domain:eldenring.fandom.com)",
+      "WebFetch(domain:darksouls.fandom.com)",
+      "PowerShell($result = Invoke-RestMethod -Uri \"http://localhost:3000/api/games\" -TimeoutSec 5; $result | ForEach-Object { \"$\\($_.id\\). $\\($_.name\\) — $\\($_.genre\\)\" })",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\pitya\\\\OneDrive\\\\Desktop\\\\study\\\\web-site\\\\frontend\\\\public\\\\images\")",
+      "WebFetch(domain:arcraiders.com)",
+      "WebFetch(domain:www.escapefromtarkov.com)"
+    ]
+  }
+}
