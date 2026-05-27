@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const api = axios.create({ baseURL: 'http://localhost:3000/api' });
+// В продакшене берём URL из переменной окружения, локально — localhost
+const api = axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api' });
 
 export const getGames = () => api.get('/games');
 export const getCategories = () => api.get('/categories');

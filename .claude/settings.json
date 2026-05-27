@@ -12,7 +12,9 @@
       "PowerShell($result = Invoke-RestMethod -Uri \"http://localhost:3000/api/games\" -TimeoutSec 5; $result | ForEach-Object { \"$\\($_.id\\). $\\($_.name\\) — $\\($_.genre\\)\" })",
       "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\pitya\\\\OneDrive\\\\Desktop\\\\study\\\\web-site\\\\frontend\\\\public\\\\images\")",
       "WebFetch(domain:arcraiders.com)",
-      "WebFetch(domain:www.escapefromtarkov.com)"
+      "WebFetch(domain:www.escapefromtarkov.com)",
+      "Bash(git remote *)",
+      "Bash(git branch *)"
     ]
   }
 }
